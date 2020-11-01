@@ -9,21 +9,23 @@ class Button extends Component {
         list : []
     }
       clickHandler = (event) => {
+
+        const tempState = [...this.state.list, event.target.value];
+
        this.setState({
            showList: true,
-           list : this.state.list.push(this.props.task)
+           list : tempState
        })
-       
     }
     render(){
-        
+        console.log(this.state.list, typeof this.state.list)
         // if(this.state.showList){
         //    list = this.props.task
         // }
         return(
             <div>
                 <button onClick = {this.clickHandler}>Click to add the todo</button>
-                {this.state.list}
+                    {this.state.list.map((item, idx) => <p key={idx}>{item}</p>)}
                 </div>
         )
     }
